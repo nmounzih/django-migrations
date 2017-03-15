@@ -3,7 +3,16 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
+import csv
 
+def load_data_csv(apps, schema_editor):
+    Countries = apps.get_model("countries", "Countries")
+    with open ('countries.csv', 'r') as f:
+        fields = {"fieldnames": ("name", "capital", "population", "aggregate", "status", "language", "export")}
+        reader = csv.DictReader(f, **fields)
+        for row in reader:
+            c = Countries(**row)
+            c.save()
 
 class Migration(migrations.Migration):
 
@@ -12,4 +21,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(load_data_csv)
     ]

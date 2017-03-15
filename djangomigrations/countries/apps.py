@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CocountriesConfig(AppConfig):
-    name = 'cocountries'
+class CountriesConfig(AppConfig):
+    name = 'countries'

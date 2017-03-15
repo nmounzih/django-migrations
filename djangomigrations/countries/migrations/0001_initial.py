@@ -4,6 +4,14 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
+def open_data_csv(apps, schema_editor):
+    Countries = apps.get_model("countries", "Countries")
+    with open ('countries.csv', 'r', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        for row in reader:
+
+
+
 
 class Migration(migrations.Migration):
 
